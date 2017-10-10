@@ -1,0 +1,78 @@
+<div>域名解析</div>
+
+<nz-spin [nzTip]="'正在读取数据...'" [nzSpinning]="isLoading">
+  <table class="datatable table" cellpadding="0" cellspacing="0" style="width: 80%;margin-left: 10%;margin-top: 20px;margin-bottom: 50px" *ngIf="toolsdomainData">
+    <thead>
+    <tr>
+      <th style="color: #2aabd2">内容</th>
+      <th style="color: #2aabd2">查询结果</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        {{toolsdomainData.headers[0].fieldCH}}
+      </td>
+      <td>
+        {{toolsdomainData.result.domain}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{toolsdomainData.headers[5].fieldCH}}
+      </td>
+      <td>
+        {{toolsdomainData.result.created}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{toolsdomainData.headers[1].fieldCH}}
+      </td>
+      <td>
+        {{toolsdomainData.result.registered=='yes'?'是':'否'}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{toolsdomainData.headers[4].fieldCH}}
+      </td>
+      <td>
+        {{toolsdomainData.result.changed}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{toolsdomainData.headers[7].fieldCH}}
+      </td>
+      <td>
+        {{toolsdomainData.result.email ||'未知'}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{toolsdomainData.headers[9].fieldCH}}
+      </td>
+      <td>
+        {{toolsdomainData.result.sponsor ||'未知'}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{toolsdomainData.headers[8].fieldCH}}
+      </td>
+      <td>
+        {{toolsdomainData.result.registrant ||'未知'}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        注册商网址
+      </td>
+      <td>
+        {{toolsdomainData.result.registrant||'未知'}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</nz-spin>

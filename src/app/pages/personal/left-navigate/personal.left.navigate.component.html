@@ -1,0 +1,22 @@
+<div class="center user" style="padding-top: 28px;font-size: 15px">
+  <div class="user-left">
+    <div class="user-img">
+      <i class="icon iconfont icon-tubiao211"></i>
+    </div>
+    <ul>
+      <li class="umleft" [routerLink]="['/personal/info']" routerLinkActive="active"><a href="javascript:;">个人信息</a></li>
+      <li class="umleft" [routerLink]="['/personal/paylist']" routerLinkActive="active"><a href="javascript:;">会员中心</a></li>
+      <li class="umleft" [routerLink]="['/personal/data']" routerLinkActive="active"><a href="javascript:;">我的数据</a></li>
+      <li class="umleft" [routerLink]="['/personal/team']" routerLinkActive="active"><a href="javascript:;">成员管理</a></li>
+      <li class="umleft" [routerLink]="['/personal/loglogin']" routerLinkActive="active"><a href="javascript:;">登录日志</a></li>
+      <li class="umleft" [routerLink]="['/personal/searchlog']" routerLinkActive="active"><a href="javascript:;">查询记录</a></li>
+      <li class="umleft" [routerLink]="['/personal/question']" routerLinkActive="active"><a href="javascript:;">修改密保问答</a></li>
+      <li class="umleft" [routerLink]="['/personal/changePwd']" routerLinkActive="active"><a href="javascript:;">密码修改</a></li>
+      <li class="umleft"><a href="javascript:;" (click)="loginOut()">安全退出</a></li>
+    </ul>
+  </div>
+  <div class="user-con">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="clearfix"></div>
+</div>

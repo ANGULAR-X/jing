@@ -1,0 +1,142 @@
+<div class="login">
+  <h3><img src="../../../../assets/img/logo2.png" alt="logo"></h3>
+  <form name="form" class="form-validation">
+    <div class="login-box">
+      <p class="txt-input">
+        <i class="iconfont icon-tubiao211"></i>
+        <input type="text" placeholder="用户名/手机号" [(ngModel)]="userModel.account" name="account">
+      </p>
+      <p class="txt-input">
+        <i class="iconfont icon-tubiao202"></i>
+        <input type="password" placeholder="密码" [(ngModel)]="userModel.password" name="password">
+      </p>
+      <p class="txt-input txt-code">
+        <input type="text" placeholder="验证码"  minlength="4" [(ngModel)]="userModel.verificationCode" name="verificationCode">
+        <span>
+        <img [src]="imgcode" *ngIf="imgcode"  (click)="getVerificationCode()" style="-webkit-transition: all .5s;display: -webkit-flex;"/>
+        </span>
+        <span><a class="blue" style="-webkit-transition: all .5s;display: -webkit-flex;" (click)="getVerificationCode()">刷新验证码</a></span>
+      </p>
+    </div>
+    <div class="relative hasload">
+      <button type="submit" nz-button [nzType]="'primary'" (click)="doLogin(title, content, footer)" [nzLoading]="false" [disabled]="!userModel.account && !userModel.password && !userModel.verificationCode">提交</button>
+    </div>
+    <p class="txt-center">
+      <small><a href="javascript:void(0)" (click)="forgetPwd(forgetpwd_title,forgetpwd_content,forgetpwd_footer)">忘记密码？</a></small>
+      <small>点击登录按钮，即代表您同意<a href="../../../../assets/agreement.html" target="_blank">《镜世界用户协议》</a></small>
+    </p>
+    <p><small>还未注册？请下载《 <a href="../../../../assets/img/user_agreement.rar" target="_blank"><img src="../../../../assets/img/word.png" style="vertical-align: middle"/> 镜世界用户试用协议模板</a>》，按说明操作</small></p>
+  </form>
+</div>
+
+
+
+
+
+<nz-modal [nzVisible]="isVisibleSecurity">
+  <ng-template #title>
+    <h3>请回答您设置安全问题答案</h3>
+  </ng-template>
+  <ng-template #content>
+    <div class="infomsg txt-left">{{userModel.errorSecurity}}</div>
+    <div class="txt-input"><span>安全问题：</span><label>你最喜欢的数字？</label> </div>
+    <div class="txt-input"><span>问题答案：</span><input type="password" placeholder="输入该问题的答案" [(ngModel)]="userModel.answer"></div>
+  </ng-template>
+  <ng-template #footer>
+    <div class="qus-butter">
+      <button type="submit" class="qus-butter btn-blue" (click)="validateSecurity()" nz-button [nzType]="'primary'" [nzLoading]="false" [disabled]="!userModel.answer">确认答案</button>
+      <small><a href="javascript:void(0)" (click)="forgetSecurity(forget_title,forget_content,forget_footer)">忘记密保？</a></small>
+    </div>
+  </ng-template>
+</nz-modal>
+
+
+<nz-modal [nzVisible]="isVisiblePwd">
+  <ng-template #forgetpwd_title>
+    <h3>请重新设置您的登录密码</h3>
+  </ng-template>
+  <ng-template #forgetpwd_content>
+    <form name="form" class="form-validation" nz-form [formGroup]="validatePwdForm" (ngSubmit)="submitPwdForm($event,validatePwdForm.value)">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+          <label nz-form-item-required>设置新密码</label>
+        </div>
+        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback [nzValidateStatus]="validatePwdForm.controls.newpassword" (ngModelChange)="validateConfirmPassword()">
+          <nz-input class="password" [nzType]="'password'" [nzSize]="'large'" formControlName="newpassword" [nzId]="'newpassword'" [nzPlaceHolder]="'只能输入6-20个字母、数字、下划线'"></nz-input>
+          <div nz-form-explain *ngIf="getPwdFormControl('newpassword').dirty&&getPwdFormControl('newpassword').hasError('required')">只能输入6-20个字母、数字、下划线!</div>
+          <div nz-form-explain *ngIf="getPwdFormControl('newpassword').dirty&&getPwdFormControl('newpassword').hasError('minlength')">只能输入6-20个字母、数字、下划线!</div>
+          <div nz-form-explain *ngIf="getPwdFormControl('newpassword').dirty&&getPwdFormControl('newpassword').hasError('maxlength')">只能输入6-20个字母、数字、下划线!</div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+          <label nz-form-item-required>重复新密码</label>
+        </div>
+        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback [nzValidateStatus]="validatePwdForm.controls.onepassword">
+          <nz-input class="password" [nzType]="'password'" [nzSize]="'large'" formControlName="onepassword" [nzId]="'onepassword'"></nz-input>
+          <div nz-form-explain *ngIf="getPwdFormControl('onepassword').dirty&&getPwdFormControl('onepassword').hasError('required')">两次密码输入不一致!</div>
+          <div nz-form-explain *ngIf="getPwdFormControl('onepassword').dirty&&getPwdFormControl('onepassword').hasError('confirm')">两次密码输入不一致！</div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template #forgetpwd_footer>
+    <div nz-form-item nz-row>
+      <div nz-col [nzOffset]="5" [nzSpan]="12" nz-form-control>
+        <button nz-button [nzType]="'primary'" [nzSize]="'large'" [disabled]="!validatePwdForm.valid" style="font-size: 16px;font-weight: bold;">确定修改</button>
+      </div>
+    </div>
+  </ng-template>
+</nz-modal>
+
+
+
+
+
+
+
+<nz-modal [nzVisible]="isVisibleForget">
+  <ng-template #forget_title>
+    <h3>请填写您所绑定的手机号</h3>
+  </ng-template>
+  <ng-template #forget_content>
+    <form nz-form [formGroup]="validateForm" class="login-form find-security" (ngSubmit)="valiedateMobile(title, content, footer)">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+          <label nz-form-item-required>手机号</label>
+        </div>
+        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback [nzValidateStatus]="validateForm.controls.mobile">
+          <nz-input class="txt-mobile" [nzSize]="'large'" formControlName="mobile" [nzId]="'email'" [nzPlaceHolder]="'请输入11位手机号'" [(ngModel)]="securityModal.mobilePhone"></nz-input>
+          <div nz-form-explain *ngIf="getFormControl('mobile').dirty&&getFormControl('mobile').hasError('required')">请输入11位手机号!</div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+          <label  nz-form-item-required>短信验证码</label>
+        </div>
+        <div nz-col [nzSm]="14" [nzXs]="24">
+          <div nz-row>
+            <div nz-col [nzSpan]="12" nz-form-control nzHasFeedback [nzValidateStatus]="validateForm.controls.verificationCode">
+              <nz-input [nzSize]="'large'" formControlName="verificationCode" [nzId]="'captcha'" [nzPlaceHolder]="'短信验证码'" [(ngModel)]="securityModal.verificationCode"></nz-input>
+              <div nz-form-explain *ngIf="getFormControl('verificationCode').dirty&&getFormControl('verificationCode').hasError('required')">验证码不能为空!</div>
+              <div nz-form-explain *ngIf="getFormControl('verificationCode').dirty&&getFormControl('verificationCode').hasError('pattern')">请输入6位短信验证码!</div>
+            </div>
+            <div nz-col [nzSpan]="12">
+              <!--<button class="send-code" nz-button [nzSize]="'large'">获取手机验证码</button>-->
+              <mobile-code [mobile]="securityModal.mobilePhone"></mobile-code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template #forget_footer>
+    <div nz-form-item nz-row>
+      <div nz-col [nzOffset]="5" [nzSpan]="12" nz-form-control>
+        <button nz-button [nzType]="'primary'" [nzSize]="'large'" [nzLoading]="securityModal.isLoading" [disabled]="!validateForm.valid" style="font-size: 16px;font-weight: bold;">下一步</button>
+      </div>
+    </div>
+  </ng-template>
+</nz-modal>
+
+

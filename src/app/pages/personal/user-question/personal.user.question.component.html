@@ -1,0 +1,27 @@
+<div class="user-sarch user-question active txt-input">
+  <div class="qesbox uc-box setqus">
+    <!--<form name="form" class="form-validation">-->
+      <h3>1、请先回答您设置安全问题答案 </h3>
+      <div class="txt-input"><label>安全问题：</label><span><b>{{userQus}}</b></span> </div>
+      <div class="txt-input"><label>问题答案：</label><input type="text" placeholder="输入该问题的答案" [(ngModel)]="oldAnswer" required></div>
+      <h3>2、请从新设置您的密保问题和答案 </h3>
+      <div class="txt-input"><label>安全问题：</label>
+        <nz-select style="width: 300px;float: none;color: #fff;" [(ngModel)]="selectedOption" nzAllowClear>
+          <nz-option
+            *ngFor="let option of options"
+            [nzLabel]="option.label"
+            [nzValue]="option">
+          </nz-option>
+        </nz-select>
+      </div>
+      <div class="txt-input" style="margin-left: -3px;"><label>问题答案：</label>
+        <input type="text" placeholder="设置该问题的答案" [(ngModel)]="newAnswer" required></div>
+      <div>
+        <div class="relative">
+          <button type="submit" class="btn btn-blue btnbox" (click)="setNewQuestion()">确认修改</button>
+        </div>
+      </div>
+    <!--</form>-->
+  </div>
+</div>
+

@@ -1,0 +1,72 @@
+<div style="margin-top: 45px">
+  <div class="ip-map" style="color: #ccc" *ngIf="ipaddressData">
+    <div class="ip-head">
+      <label>被查询的IP：{{ipaddressData['ip']}}</label>
+      <br>
+      <label>定位级别：{{ipaddressData['accuracy']}}</label>
+      <br>
+      <label>所在地区：{{ipaddressData['owner']}}</label>
+    </div>
+    <div class="ip-left">
+      <label>准确性：
+        <label>
+          <img src="../../../../assets/img/address/1.png" alt="" *ngIf="ipaddressData.correctness >= 1">
+          <img src="../../../../assets/img/address/1.png" alt="" *ngIf="ipaddressData.correctness >= 2">
+          <img src="../../../../assets/img/address/1.png" alt="" *ngIf="ipaddressData.correctness >= 3">
+          <img src="../../../../assets/img/address/1.png" alt="" *ngIf="ipaddressData.correctness >= 4">
+          <img src="../../../../assets/img/address/1.png" alt="" *ngIf="ipaddressData.correctness >= 5">
+          <img src="../../../../assets/img/address/2.png" alt="" *ngIf="ipaddressData.correctness <=4">
+          <img src="../../../../assets/img/address/2.png" alt="" *ngIf="ipaddressData.correctness <=3">
+          <img src="../../../../assets/img/address/2.png" alt="" *ngIf="ipaddressData.correctness <=2">
+          <img src="../../../../assets/img/address/2.png" alt="" *ngIf="ipaddressData.correctness <=1">
+          <img src="../../../../assets/img/address/2.png" alt="" *ngIf="ipaddressData.correctness <=0">
+        </label>
+      </label>
+      <br>
+      <label>一致性：
+        <label>
+          <img src="../../../../assets/img/address/1.png" alt="" *ngIf="ipaddressData.consistency >= 1">
+          <img src="../../../../assets/img/address/1.png" alt="" *ngIf="ipaddressData.consistency >= 2">
+          <img src="../../../../assets/img/address/1.png" alt="" *ngIf="ipaddressData.consistency >= 3">
+          <img src="../../../../assets/img/address/1.png" alt="" *ngIf="ipaddressData.consistency >= 4">
+          <img src="../../../../assets/img/address/1.png" alt="" *ngIf="ipaddressData.consistency >= 5">
+          <img src="../../../../assets/img/address/2.png" alt="" *ngIf="ipaddressData.consistency <=4">
+          <img src="../../../../assets/img/address/2.png" alt="" *ngIf="ipaddressData.consistency <=3">
+          <img src="../../../../assets/img/address/2.png" alt="" *ngIf="ipaddressData.consistency <=2">
+          <img src="../../../../assets/img/address/2.png" alt="" *ngIf="ipaddressData.consistency <=1">
+          <img src="../../../../assets/img/address/2.png" alt="" *ngIf="ipaddressData.consistency <=0">
+        </label>
+      </label>
+    </div>
+    <div class="clearfix"></div>
+    <h4 class="ip-left2" style="color: #ccc">可能的区域分布：</h4>
+    <div class="ip-left1" *ngFor="let h of ipaddressData.multiareas;let i =index">
+      <h3 style="color: #ccc">地区{{i+1}}：</h3>
+      <div>
+        <label>定位半径：{{h['radius']}} &nbsp;&nbsp;&nbsp;<a style="color: red">{{h['warn']}}</a></label>
+        <br>
+        <label>纬度坐标：{{h['lat']}}</label>
+        <br>
+        <label>经度坐标：{{h['lng']}}</label>
+        <br>
+        <label>详细地址：{{h['detailedaddress']}}</label>
+        <br>
+        <label>精确地址：{{h['address']}}</label>
+      </div>
+    </div>
+    <h5 class="ip-food" style="color: #ccc">以上查询结果仅供参考</h5>
+    <h4 class="ip-left2"style="color: #ccc">说明：</h4>
+    <div class="ip-left3">
+      <p>准确性:是指IP定位的准确程度;</p>
+      <p>一致性:是指IP定位的稳定性，即在一定时间内这个IP定位的变换频率;</p>
+      <p>准确性与一致性均用星级表示,星级越高,IP定位的精确度和可信度越高。</p>
+      <p>定位半径:是指通过网络路径探测分析出该IP在该区域内都有用户使用的区域距离;</p>
+      <p>企业、学校、机构、住宅等固定场所的IP位置误差在0-1千米范围内;</p>
+      <p>数据中心、VPN、运营商网络等动态网络的IP位置误差较大，查询结果仅供参考。</p>
+      <br>
+      <br>
+    </div>
+    <div style="height: 160px;">  </div>
+  </div>
+  <div id="container" class="ip-maps"></div>
+</div>

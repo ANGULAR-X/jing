@@ -1,0 +1,24 @@
+<div class="topbar">
+  <div class="logo left">
+    <a class="left imglogo" [routerLink]="['/home']" [queryParams]="{debug: true}" fragment="education">
+      <img src="../../../../assets/img/mlogo.png"/>
+    </a>
+  </div>
+  <!--<div class="topsearch left relative" ng-if="topshow">-->
+    <!--<div ng-include="'/blocks/head_search_box.html'" class="topsearch-down"></div>-->
+    <!--&lt;!&ndash;<div class="left topsearch-button " ui-toggle-class ng-click="showTopSearch();">&ndash;&gt;-->
+    <!--&lt;!&ndash;<i class="icon iconfont searchicon icon-tubiao11"></i>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--</div>-->
+  <ng-container *ngIf="isShowSearchBox">
+    <search-input></search-input>
+  </ng-container>
+
+  <div class="right">
+    <i class="icon iconfont icon-user"></i>
+    <span>欢迎回来，{{currentUser.account}} </span>
+    <a class="ablue" (click)="goPersonal()">个人中心</a>
+    <a  class="aorgen" class="aorgen">收藏夹</a>
+    <a class="logout agrey" (click)="doLogout()">退出</a>
+  </div>
+</div>

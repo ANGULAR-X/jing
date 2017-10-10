@@ -1,0 +1,16 @@
+<nz-spin [nzTip]="'正在读取数据...'" [nzSize]="'large'" [nzSpinning]="isLoading">
+<div class="center">
+  <div class="search-list waterfall company">
+    <ul *ngIf="companyData">
+      <li *ngFor="let h of companyData.resultList;let i=index;">
+        <a>
+          <h3 class="txt-center">{{h['name']}}</h3>
+          <p> 法人代表： {{h['legalPersonName']}}</p>
+          <p> 注册时间： {{h['estiblishTime']}}</p>
+          <p> 注册资金： {{h['regCapital']}}</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</nz-spin>

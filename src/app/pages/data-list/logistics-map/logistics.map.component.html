@@ -1,0 +1,34 @@
+<div id="logisticsmapTable">
+  <div style="background-color: #2a6496;width:25%;float: left">
+    <nz-table #nzTable *ngIf="tableData" [nzAjaxData]="tableData.resultList"
+              [nzTotal]="searchParams.total"
+              [(nzPageIndex)]="searchParams.current"
+              (nzPageIndexChange)="refreshData(searchParams)"
+              [(nzPageSize)]="searchParams.pageSize">
+      <thead nz-thead>
+      <tr>
+        <ng-container *ngFor="let h of tableData.headers;let i = index;">
+          <th nz-th *ngIf="h['fieldEN']=='name' || h['fieldEN']=='mobilePhone' || h['fieldEN']=='linkName'">
+          <span>
+           {{h['fieldCH']}}
+          </span>
+          </th>
+        </ng-container>
+
+      </tr>
+      </thead>
+      <tbody nz-tbody>
+      <tr nz-tbody-tr *ngFor="let data of tableData.resultList;let i = index;">
+        <ng-container *ngFor="let h of tableData.headers;let i = index;">
+        <td nz-td *ngIf="h['fieldEN']=='name' || h['fieldEN']=='mobilePhone' || h['fieldEN']=='linkName'">
+          <span [innerHtml]="data[h['fieldEN']] |safeHtml">
+          </span>
+        </td>
+        </ng-container>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  <img src="../../../../assets/img/map.png" style="position: absolute;z-index: 999;margin-top: 35%;margin-left: 62%;">
+  <div id="container" style="background-color: #5F3C3D;width: 75%;float: left;margin-top: 38px"></div>
+</div>

@@ -1,0 +1,2 @@
+<button nz-button [nzSize]="'large'" [disabled]="showTimer" [ngClass]="{'send-gray' : showTimer,'send-code':!showTimer}" (click)="getMobileCode()"><b *ngIf="showTimer">{{ timeCount }}</b>{{textInput}}</button>
+

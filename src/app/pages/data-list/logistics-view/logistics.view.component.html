@@ -1,0 +1,18 @@
+<div class="center">
+  <div class="logis" style="width: auto">
+    <nz-spin [nzTip]="'正在读取数据...'" [nzSize]="'large'" [nzSpinning]="isLoading">
+      <div class="search-conlist" *ngIf="logisticsData">
+        <div class="pin" *ngFor="let l of logisticsData.resultList;let i = index;">
+          <div *ngFor="let h of logisticsData.headers" class="cj">
+            <p *ngIf="l[h.fieldEN]">
+              <label class="tit">{{h.fieldCH}}：</label>
+              <span *ngIf="h.fieldEN != 'address'" [innerHtml]="l[h.fieldEN] |safeHtml"></span>
+              <a class="iconimg-map" *ngIf="h.fieldEN == 'address'" (click)="toLogisticsMap(l)" [innerHtml]="l['address'] |safeHtml"></a>
+            </p>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </nz-spin>
+  </div>
+</div>

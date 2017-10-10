@@ -1,0 +1,36 @@
+<!--<h2 class="search-tit">-->
+  <!--<a ng-click="goPage()" class="home">-->
+    <!--<img src="../../../../assets/img/path.png" style="vertical-align:middle;height: 23px"/>-->
+  <!--</a>-->
+  <!--<span>-->
+    <!--<a href="javascript:;">7375</a>-->
+    <!--<i>X</i>-->
+  <!--</span>-->
+<!--</h2>-->
+
+<nz-tabset [nzType]="'card'" id="searchTabs" [nzSelectedIndex]="currentTabIndex">
+  <nz-tab *ngFor="let tab of tabs;let i = index" (nzClick)="navigateToViewByUrl(tab)">
+    <ng-template #nzTabHeading>
+      <div *ngIf="false">
+        <a class="home" id="home-icon">
+          <img src="../../../../assets/img/path.png" style="vertical-align:middle;height: 23px"/>
+        </a>
+      </div>
+      <div  >
+        {{tab.params[tab.tag.currentType]}}
+        <i class="anticon anticon-cross" (click)="closeTab(tab)"></i>
+      </div>
+    </ng-template>
+  </nz-tab>
+</nz-tabset>
+<!--水印-->
+<div watermark="currentUser">
+
+</div>
+<!--数据展示路由-->
+<div style="padding-top: 28px;">
+  <router-outlet></router-outlet>
+  <nz-back-top></nz-back-top>
+</div>
+
+

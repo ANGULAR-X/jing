@@ -1,0 +1,11 @@
+<div>
+  <div class="tabteam">
+    <ul>
+      <li (click)="changeChartData(1)">今天</li>
+      <li (click)="changeChartData(-1)">昨天</li>
+      <li (click)="changeChartData(7)">近一周</li>
+      <li (click)="changeChartData(30)" class="active">近一个月</li>
+    </ul>
+  </div>
+  <div [highcharts]="highChartData" *ngIf="highChartData"></div>
+</div>

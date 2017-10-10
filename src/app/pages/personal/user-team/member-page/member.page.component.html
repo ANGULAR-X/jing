@@ -1,0 +1,12 @@
+<div class="user-sarch user-question active txt-input">
+  <div class="tab">
+    <ul>
+      <li [routerLink]="['/personal/team/amount']" routerLinkActive="active">成员查询量统计</li>
+      <li [routerLink]="['/personal/team/member']" routerLinkActive="active">成员列表</li>
+      <li [routerLink]="['/personal/team/statistics']" routerLinkActive="active">成员登录统计</li>
+      <li [routerLink]="['/personal/team/details']" routerLinkActive="active">成员登录明细</li>
+      <li [routerLink]="['/personal/team/log']" routerLinkActive="active">成员查询日志</li>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
+</div>

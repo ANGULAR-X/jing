@@ -1,0 +1,36 @@
+<div class="user-sarch txt-input active">
+  <div class="usertop-search">
+    <span><b>快速查找</b></span>
+    <span>从<nz-datepicker (ngModelChange)="searchParams._startDate=$event;_startValueChange()" [nzDisabledDate]="_disabledStartDate" [ngModel]="searchParams._startDate" [nzShowTime]="true" [nzFormat]="'YYYY-MM-DD HH:mm:ss'" [nzPlaceHolder]="'开始时间'"></nz-datepicker>
+    </span>  至
+    <nz-datepicker (ngModelChange)="searchParams._endDate=$event;_endValueChange()" [nzDisabledDate]="_disabledEndDate" [ngModel]="searchParams._endDate"  [nzShowTime]="searchParams._endDate" [nzFormat]="'YYYY-MM-DD HH:mm:ss'" [nzPlaceHolder]="'结束日期'"></nz-datepicker>
+    <span>
+      <a class="btn ablue" (click)="selectRefresh()">筛选</a>
+    </span>
+  </div>
+  <!--表格开始-->
+  <nz-table #nzTable *ngIf="tableData" [nzAjaxData]="tableData.resultList"
+            [nzTotal]="searchParams.total"
+            [nzLoading]="searchParams.isLoading"
+            [(nzPageIndex)]="searchParams.current"
+            (nzPageIndexChange)="refreshData(searchParams)"
+            [(nzPageSize)]="searchParams.pageSize">
+    <thead nz-thead>
+    <tr>
+      <th nz-th *ngFor="let h of tableData.headers;let i = index;">{{h.fieldCH}}</th>
+    </tr>
+    </thead>
+    <tbody nz-tbody>
+    <tr nz-tbody-tr *ngFor="let data of tableData.resultList;let i = index;">
+      <td nz-td *ngFor="let h of tableData.headers;let i = index;">
+        <span *ngIf="h['fieldEN']!=='status'">
+          {{data[h['fieldEN']]}}
+        </span>
+        <span *ngIf="h['fieldEN']=='status'">
+          <b [ngClass]="{'txt-red':data[h['fieldEN']]=='0','txt-green': data[h['fieldEN']]=='1'}">{{data[h['fieldEN']]=='0' ? '登录' : '登出'}}</b>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

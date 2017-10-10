@@ -1,0 +1,92 @@
+<div class="topsearch left relative topsearch-down">
+  <div class="search-box active">
+    <div class="search-line">
+      <div class="typelist relative">
+        <span class="typetit" j-dropdown>{{queryTag.currentTypeName}}</span>
+        <i class="iconfont icon-down" j-dropdown></i>
+        <div class="search-type" id="searchdown" >
+          <h5>数据查询</h5>
+          <a href="javascript:;" group-active class="active" (click)="selectQueryType('keyword',0,'超级查询')">超级查询</a>
+          <a href="javascript:;" group-active (click)="selectQueryType('qqdata',0,'QQ关联')">QQ关联</a>
+          <a href="javascript:;" group-active (click)="selectQueryType('logistics',0,'实时物流')">实时物流</a>
+          <a href="javascript:;" group-active (click)="selectQueryType('mobileAddress',0,'手机状态')">手机状态</a>
+          <a href="javascript:;" group-active (click)="selectQueryType('company',0,'企业工商查询')">企业工商查询</a>
+          <a href="javascript:;" group-active (click)="selectQueryType('website',0,'互联网轨迹')">互联网轨迹</a>
+          <a href="javascript:;" group-active (click)="selectQueryType('weibo',0,'微博用户信息')">微博用户信息</a>
+          <a href="javascript:;" group-active (click)="selectQueryType('ipaddress',0,'IP精准定位')">IP精准定位</a>
+          <a href="javascript:;" group-active (click)="selectQueryType('logisticsmap',0,'物流图谱')">物流图谱</a>
+          <a href="javascript:;" group-active (click)="selectQueryType('precise',0,'高级查询')">高级查询</a>
+          <h5>实用工具</h5>
+          <a href="javascritp:;" group-active class="active" (click)="selectQueryType('toolsip',5,'IP地址解析')">IP地址解析</a>
+          <a href="javascritp:;" group-active (click)="selectQueryType('toolExp',5,'快递单号查询')">快递单号查询</a>
+          <a href="javascritp:;" group-active (click)="selectQueryType('toolsvin',5,'VIN车架号解析')">VIN车架号解析</a>
+          <a href="javascritp:;" group-active (click)="selectQueryType('toolsidcard',5,'身份证解析')">身份证解析</a>
+          <a href="javascritp:;" group-active (click)="selectQueryType('toolsdomain',5,'域名信息查询')">域名信息查询</a>
+          <a href="javascritp:;" group-active (click)="selectQueryType('toolszip',5,'邮编信息')">邮编信息</a>
+        </div>
+      </div>
+      <!--<ng-container *ngIf="queryTag.currentTooltipType == 0">-->
+        <!--<input type="search"  *ngFor="let m of inputOfDataModels;let i = index" class="search-input all" [hidden]="queryTag.currentType == m.propertyName" placeholder="{{m.placeholderText}}" [(ngModel)]="queryParams[m.propertyName]" />-->
+      <!--</ng-container>-->
+      <input type="search"  *ngFor="let m of inputOfDataModels;let i = index" class="search-input all" [hidden]="m.hidden" placeholder="{{m.placeholderText}}" [(ngModel)]="queryParams[m.propertyName]" />
+      <input type="search"  *ngFor="let m of inputOfToolModels;let i = index" class="search-input all" [hidden]="m.hidden" name="{{m.propertyName}}" placeholder="{{m.placeholderText}}" [(ngModel)]="queryParams[m.propertyName]" />
+      <!--<ng-container *ngIf="queryTag.currentTooltipType == 5">-->
+        <!--<input type="search"  *ngFor="let m of inputOfToolModels;let i = index" class="search-input all" [hidden]="queryTag.currentType == m.propertyName" name="{{m.propertyName}}" placeholder="{{m.placeholderText}}" [(ngModel)]="queryParams[m.propertyName]" />-->
+      <!--</ng-container>-->
+
+      <!--<input type="search" class="search-input bank" placeholder="请输入银行卡号"/>-->
+      <!--<input type="search" class="search-input logistics" placeholder="请输入手机号/地址关键词"/>-->
+      <!--<input type="search" class="search-input logisticsmap" placeholder="请输入手机号"/>-->
+      <!--<input type="search" class="search-input weibo" ng-show="defaultHolder == 'weibo'" placeholder="请输入新浪微博昵称关键字" ng-model="send.weibo" />-->
+      <!--<input type="search" class="search-input company" ng-show="defaultHolder == 'company'" placeholder="请输入公司名字关键字" ng-model="send.company" />-->
+      <!--<input type="search" class="search-input website" ng-show="defaultHolder == 'website'" validata="isMobile" placeholder="请输入11位手机号码" ng-model="send.website"/>-->
+      <!--<input type="search" class="search-input qqdata" ng-show="defaultHolder == 'qqdata'" placeholder="请输入QQ号/QQ昵称/QQ群号" ng-model="send.qqdata"/>-->
+      <!--<input type="search" class="search-input ipaddress" ng-show="defaultHolder == 'ipaddress'" placeholder="请输入IP地址(例如：192.168.0.1)"  validata="isIP" ng-model="send.ipaddress"/>-->
+      <!--<div class="search-input precise relative" ng-show="defaultHolder == 'precise'">-->
+        <!--<select  ng-model="select.one" ng-init="select.one='0'" ng-change="change()">-->
+          <!--<option value="0">&#45;&#45;请选择&#45;&#45;</option>-->
+          <!--<option ng-repeat="itm in precise.one" value="{{itm.index}},{{itm.key}}">{{itm.name}}</option>-->
+        <!--</select>-->
+        <!--<select id="typeChange" ng-model="selModel[0]" ng-focus="changeListClick(0)"  ng-change="changeList(0)" ng-init="selModel[0]=0" ng-options="itm.key as itm.val for itm in dataList[0]">-->
+        <!--</select>-->
+        <!--<input type="search" class="txt-input precise lastchild"  validata="isNull"  ng-model="send.precise" placeholder="输入关键词..."/>-->
+        <!--<div class="search-button oticon">-->
+          <!--<b class="iconfont" ng-click="addInput($event)">+</b>-->
+        <!--</div>-->
+        <!--<div class="search-button oticon">-->
+          <!--<b class="clearall small" ng-click="minusInput($event,'all')">全清</b>-->
+        <!--</div>-->
+        <!--<div class="precise-down"></div>-->
+      <!--</div>-->
+      <!--<input type="search" class="search-input mobileadr hide" placeholder="请输入11位手机号码" ng-model="send.mobileAddress"/>-->
+      <!--<input type="search" class="search-input toolsip hide" placeholder="请输入IP地址(例如：192.168.0.1)"  validata="isIP" ng-model="send.toolIp">-->
+      <!--<input type="search" class="search-input toolsmobile hide" validata="isMobile" placeholder="请输入11位手机号码" ng-model="send.toolMobile"/>-->
+      <!--<input type="search" class="search-input toolsdomain hide"  placeholder="请输入域名" ng-model="send.toolDomain" />-->
+      <!--<input type="search" class="search-input toolscompany hide"  placeholder="请输入公司全称" ng-model="send.toolCompany" />-->
+      <!--<input type="search" class="search-input toolszip hide"  placeholder="请输入邮编" ng-model="send.toolZip" />-->
+      <!--<div class="search-input toolsexpress hide relative">-->
+        <!--<select ng-model="expModel" ng-options="itm.no as itm.com  for itm in expressName track by itm.no" ng-change="expSelect(expModel)">-->
+          <!--<option value="0">&#45;&#45;请选择&#45;&#45;</option>-->
+        <!--</select>-->
+        <!--<input type="search" class="txt-input lastchild" id="searchExp"  validata="isChinese" placeholder="请输入运单号" ng-model="send.toolExp"/>-->
+      <!--</div>-->
+      <!--<input type="search" class="search-input toolsvin hide" placeholder="请输入VIN车架号" ng-model="send.toolVin">-->
+      <!--<input type="search" class="search-input toolsidcard hide" placeholder="请输入身份证号"  validata="isIDcard" ng-model="send.toolId">-->
+      <!--<input type="search" class="search-input toolsidcardcheck hide" placeholder="请输入真实姓名"   ng-model="send.toolIdcheckname">-->
+      <!--<input type="search" class="search-input toolsidcardcheck hide" placeholder="请输入身份证号"  ng-model="send.toolIdcheck">-->
+      <!--<input type="search" class="search-input toolsbank hide" placeholder="请输入银行卡号"  validata="isBankCard" ng-model="send.toolBank">-->
+      <div class="search-button relative hasload " id="topSearch" (click)="queryByCondition()">
+        <i class="icon iconfont icon-tubiao11"></i>
+        <i class="loadicon iconfont icon-filesync"></i>
+      </div>
+      <div class="search-button relative hasload" style="width: 80px;">
+        <a style="font-weight: bold;font-size: 16px;">导出excel</a>
+      </div>
+      <div class="clearfix"></div>
+      <!--小工具展示-->
+      <div class="toolsbox" id="toolsbox" ng-show="toolsbox">
+
+      </div>
+    </div>
+  </div>
+</div>

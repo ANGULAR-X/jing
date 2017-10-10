@@ -1,0 +1,27 @@
+<nz-spin [nzTip]="'正在读取数据...'" [nzSpinning]="isLoading">
+  <div class="website-inside">
+    <div class="website-list waterfall" style="display: block" *ngIf="websiteData">
+      <div class="website-pin" *ngFor="let h of websiteData.resultList;let i = index;">
+        <div class="website-left" style="margin-left: 25px;">
+          <img src="../../../../assets{{h.imgUrl}}">
+        </div>
+        <div class="website-left website-head">
+          <div class="website-left" style="width: 240px;">
+            <span class="website-name">{{h.webName}}</span>
+          </div>
+          <div class="website-left" style="width: 30%;">
+            <span class="website-right">是否注册： <b [ngClass]="{'green':h['flag']==true,'red': h['flag']==false}">{{h['flag']==false ? '未注册':'已注册'}}</b></span>
+          </div>
+          <div class="website-left">
+            <span>网址：<a href="http://{{h['webSite']}}" target="_blank">{{h.webSite}}</a></span>
+          </div>
+        </div>
+        <div class="website-content">
+         {{h.briefIntroduction}}
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</nz-spin>
+

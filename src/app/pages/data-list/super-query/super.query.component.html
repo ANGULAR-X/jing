@@ -1,0 +1,55 @@
+<div class="center" id="keyword">
+  <nz-spin [nzTip]="'正在读取数据...'" [nzSpinning]="isLoading" [nzSize]="'large'">
+    <div class="sleft-menu scrollbar fixed">
+      <div id="listmenu">
+        <div class="slistbox" *ngFor="let m of leftMenuData | keys">
+          <h2>{{m.key}}</h2>
+          <ul>
+            <li *ngFor="let k of m.value;let i = index;" (click)="gotoTarget(k.type,$event)">
+              <span><i class="icon iconfont {{ k.type | icons }}"></i></span>
+              <label>{{k.label}}</label>
+              <!--<b id="menunum-{{itm.index}}-{{itm.type}}">{{itm.num}}</b>-->
+              <b>{{k.num >= 100 ? '99+' : k.num}}</b>
+              <nz-badge [nzCount]="109" [nzStyle]="style3"></nz-badge>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="waterlist">
+      <div *ngFor="let m of leftMenuData | keys">
+        <div *ngFor="let k of m.value;let i = index;" id="box{{k.type}}">
+          <!--标题-->
+          <h3 class="h2 listh2" *ngIf="keywordData[k.type] && keywordData[k.type].totalRowNum>0">
+            {{k.label}}
+          </h3>
+          <!--渲染内容-->
+          <div class="waterfall" *ngIf="keywordData[k.type] && keywordData[k.type].totalRowNum>0">
+            <div class="pin" *ngFor="let hval of keywordData[k.type].resultList">
+              <!--<love data-id="{{hitm}}" data-idtype="{{hitm}}" data-name="{{itm.label}}" data-data="{{hval}}" data-head="{{listBoxData.data[itm['type']].head}}"></love>-->
+              <div class="pincon">
+                <ng-container *ngFor="let val of keywordData[k.type].headers">
+                  <div class="white-wrap" *ngIf="hval[val.fieldEN] && hval[val.fieldEN]!='NA'">
+                    <p>
+                      <label class="tit">{{val.fieldCH}}：</label>
+                      <a class="iconimg-search" *ngIf="hval[(val.fieldEN+'-linked')]"
+                         [innerHtml]="hval[val.fieldEN] |safeHtml" (click)="navigateToViewByUrl(hval[val.fieldEN])"></a>
+                      <span *ngIf="!hval[(val.fieldEN+'-linked')]&&!hval[(val.fieldEN+'-linkedMap')]"
+                            [innerHtml]="hval[val.fieldEN] |safeHtml"></span>
+                      <a class="iconimg-map" *ngIf="hval[(val.fieldEN+'-linkedMap')]"
+                         [innerHtml]="hval[val.fieldEN] |safeHtml"></a>
+                    </p>
+                  </div>
+                </ng-container>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+          <!--加载跟多-->
+          <div class="loadmore" (click)="loadmore(k)" *ngIf="keywordData[k.type] && keywordData[k.type].totalRowNum>0">{{searchConditions[k.type].loadmoreInfo}}</div>
+        </div>
+      </div>
+    </div>
+  </nz-spin>
+</div>
+

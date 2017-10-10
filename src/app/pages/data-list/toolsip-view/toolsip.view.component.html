@@ -1,0 +1,20 @@
+<nz-spin [nzTip]="'正在读取数据...'" [nzSpinning]="isLoading">
+  <table class="datatable table" cellpadding="0" cellspacing="0" style="width: 80%;margin-left: 10%;margin-top: 20px;" *ngIf="toolipData">
+    <thead>
+    <tr>
+      <th>IP</th>
+      <th>查询结果</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        {{ip}}
+      </td>
+      <td>
+        {{toolipData.result.ipAddress}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</nz-spin>

@@ -1,0 +1,41 @@
+<div class="user-sarch txt-input active">
+  <div class="level" ng-if="userLevel.chargingStatus||userLevel.vipStatus">
+    <h3>我的会员等级</h3>
+    <div class="levelimg txt-center">
+           <span class="img" ng-if="userLevel.vipStatus"><img src="../../../../assets/img/vip.png"/><br>
+            VIP会员
+           </span>
+      <span class="img" ng-if="userLevel.chargingStatus"><img src="../../../../assets/img/gift.png"/><br>
+            普通会员
+           </span>
+    </div>
+    <div class="levelimg">
+      <b>VIP会员</b>
+      <p>使用期限延长至1年；</p>
+      <p>互联网基础数据可查询量相比普通用户提升10倍——500次/天/账户；</p>
+      <p>工具类数据接口可查询量相比普通用户提升20倍——200次/天/账户；</p>
+      <p>完善的用户管理功能：单位用户的登录日志、浏览记录、查询数据量统计、数据查询管控</p>
+    </div>
+  </div>
+  <br>
+  <h3>充值记录</h3>
+  <!--表格开始-->
+  <br>
+  <nz-table #nzTable *ngIf="tableData" [nzAjaxData]="tableData.resultList"
+            [nzTotal]="_total"
+            [nzLoading]="_loading"
+            [(nzPageIndex)]="_current"
+            (nzPageIndexChange)="refreshData()"
+            [(nzPageSize)]="_pageSize">
+    <thead nz-thead>
+    <tr>
+      <th nz-th *ngFor="let h of tableData.headers;let i = index;">{{h.fieldCH}}</th>
+    </tr>
+    </thead>
+    <tbody nz-tbody>
+    <tr nz-tbody-tr *ngFor="let data of tableData.resultList;let i = index;">
+      <td nz-td *ngFor="let h of tableData.headers;let i = index;">{{data[h['fieldEN']]==null?'/':data[h['fieldEN']]}}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

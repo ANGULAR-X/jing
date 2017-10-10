@@ -1,0 +1,49 @@
+<div class="uc-box pwdbox">
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+    <div nz-form-item nz-row style="margin-top: 73px;">
+      <div nz-col [nzSpan]="7" nz-form-label>
+        <label nz-form-item-required>旧密码</label>
+      </div>
+      <div>
+        <div nz-col [nzSpan]="12" nz-form-control [nzValidateStatus]="getFormControl('oldPassword')" nzHasFeedback>
+          <nz-input formControlName="oldPassword" [nzPlaceHolder]="'旧密码'" [nzType]="'password'" [nzSize]="'large'" minlength="6" maxlength="16">
+          </nz-input>
+          <div nz-form-explain *ngIf="getFormControl('oldPassword').dirty&&getFormControl('oldPassword').hasError('required')">请输入6~16长的密码</div>
+          <div nz-form-explain *ngIf="getFormControl('oldPassword').dirty&&getFormControl('oldPassword').hasError('minlength')">请输入6~16长的密码</div>
+          <div nz-form-explain *ngIf="getFormControl('oldPassword').dirty&&getFormControl('oldPassword').hasError('maxlength')">请输入6~16长的密码</div>
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-col [nzSpan]="7" nz-form-label>
+        <label nz-form-item-required>新密码</label>
+      </div>
+      <div>
+        <div nz-col [nzSpan]="12" nz-form-control [nzValidateStatus]="getFormControl('password')" nzHasFeedback>
+          <nz-input formControlName="password" [nzPlaceHolder]="'设置新密码'" [nzType]="'password'" [nzSize]="'large'" minlength="6" maxlength="16" (ngModelChange)="validateConfirmPassword()">
+          </nz-input>
+          <div nz-form-explain *ngIf="getFormControl('password').dirty&&getFormControl('password').hasError('required')">请输入6~16长的密码</div>
+          <div nz-form-explain *ngIf="getFormControl('password').dirty&&getFormControl('password').hasError('minlength')">请输入6~16长的密码</div>
+          <div nz-form-explain *ngIf="getFormControl('password').dirty&&getFormControl('password').hasError('maxlength')">请输入6~16长的密码</div>
+
+        </div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-col [nzSpan]="7" nz-form-label>
+        <label nz-form-item-required>重复新密码</label>
+      </div>
+      <div nz-col [nzSpan]="12" nz-form-control [nzValidateStatus]="getFormControl('newpassword')" nzHasFeedback>
+        <nz-input formControlName="newpassword" [nzType]="'password'" [nzPlaceHolder]="'重复新密码，确保一致'" [nzSize]="'large'">
+        </nz-input>
+        <div nz-form-explain *ngIf="getFormControl('newpassword').dirty&&getFormControl('newpassword').hasError('required')">重复新密码不能为空！</div>
+        <div nz-form-explain *ngIf="getFormControl('newpassword').dirty&&getFormControl('newpassword').hasError('confirm')">两次密码输入不一致！</div>
+      </div>
+    </div>
+    <div nz-form-item nz-row>
+      <div nz-col [nzOffset]="9" [nzSpan]="12" nz-form-control>
+        <button nz-button [nzType]="'primary'" [nzSize]="'large'" [disabled]="!validateForm.valid" style="font-size: 16px;font-weight: bold;">确定修改</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,19 @@
+<div class="center">
+  <div class="logis" style="width: auto">
+    <nz-spin [nzTip]="'正在读取数据...'" [nzSize]="'large'" [nzSpinning]="isLoading">
+      <div class="search-conlist" *ngIf="mobileStatusData">
+        <div class="pin" *ngFor="let m of mobileStatusData.resultList;let i = index;">
+          <div *ngFor="let h of mobileStatusData.headers" class="cj">
+            <p *ngIf="m[h.fieldEN]">
+              <label class="tit">{{h.fieldCH}}：</label>
+              <span [innerHtml]="m[h.fieldEN] |safeHtml"></span>
+              <!--<a class="iconimg-map" *ngIf="h.fieldEN == 'address'" routerLink="/data-list/logistics-map" [innerHtml]="l['address'] |safeHtml"></a>-->
+            </p>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </nz-spin>
+  </div>
+</div>
+

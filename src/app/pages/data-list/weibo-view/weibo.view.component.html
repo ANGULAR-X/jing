@@ -1,0 +1,21 @@
+<div class="center">
+  <nz-spin [nzTip]="'正在读取数据...'" [nzSize]="'large'" [nzSpinning]="isLoading">
+    <div class="search-list  waterfall weibox" *ngIf="weiboData">
+      <ul>
+        <li *ngFor="let w of weiboData.resultList;let i = index;" routerLink="/data-list/weibo-detail" [queryParams]="{userId : w.id}">
+          <!--<a ui-sref="page.weibomore({id:'{{itm.id}}'})">-->
+          <a>
+            <p class="left wimg">
+              <img [src]="w.avatarUrl"/>
+            </p>
+            <h3 class="left">{{w.userName}}</h3>
+            <p class="left wcon">
+              简介： {{w.biography}}
+            </p>
+            <p class="left wbot"><span>性别：{{w.gender}}</span><span class="wbadr">地区：{{w.location}}</span></p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nz-spin>
+</div>

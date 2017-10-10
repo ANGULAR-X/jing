@@ -1,0 +1,64 @@
+<nz-spin [nzTip]="'正在读取数据...'" [nzSize]="'large'" [nzSpinning]="isLoading">
+  <div class="search-list weibox more">
+    <div class="wcontext" *ngIf="weiboDeatail">
+      <ul>
+        <li>
+          <p class="left wimg">
+            <img src="{{weiboDeatail.avatarUrl}}" />
+          </p>
+          <div class="left wtit1">
+            <h3 class="left">{{weiboDeatail.userName}}</h3>
+            <p class="left wcon" title="{{weiboDeatail.biography}}">
+              简介： {{weiboDeatail.biography}}<br>
+              <b> 微博ID：{{weiboDeatail.id}}</b>
+            </p>
+            <p class="left wbot"><span>性别：{{weiboDeatail.gender}}</span><span>地区：{{weiboDeatail.location}}</span></p>
+          </div>
+          <div class="left wtit2">
+            <i class="icon iconfont icon-tubiao214"></i>
+            微博链接 <a href="{{weiboDeatail.url}}" target="_blank">{{weiboDeatail.url}}</a>
+          </div>
+        </li>
+      </ul>
+      <div class="wblist">
+        <div class="box w25">
+          <span>转发数：</span><label>{{weiboDeatail.postCount}}</label>
+        </div>
+        <div class="box w25">
+          <span>粉丝数：</span><label>{{weiboDeatail.fansCount}}</label>
+        </div>
+        <div class="box w25">
+          <span>关注数：</span><label>{{weiboDeatail.followCount}}</label>
+        </div>
+        <div class="box w25">
+          <span>相互关注数：</span><label>{{weiboDeatail.friendCount}}</label>
+        </div>
+        <div class="box w50">
+          <span>博认证用户：</span><label>{{weiboDeatail.idVerified}}</label>
+        </div>
+        <div class="box w50">
+          <span>帐号类型：</span><label>{{weiboDeatail.idType}}</label>
+        </div>
+
+        <div class="box w100">
+          <span>注册时间：</span><label>{{weiboDeatail.registerDate}}</label>
+        </div>
+        <div class="box w100">
+          <span>更新时间：</span><label>{{weiboDeatail.updateDate}}</label>
+        </div>
+        <div class="box w100">
+          <span>账号认证信息：</span><label>{{weiboDeatail.idVerifiedInfo}}</label>
+        </div>
+        <div class="box w100">
+          <span>简单自传：</span><label>{{weiboDeatail.biography}}</label>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</nz-spin>
+
+
+
+
+

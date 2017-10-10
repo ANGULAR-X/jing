@@ -1,0 +1,147 @@
+#container,.search-conlist.map{min-height: 850px; }
+.map .panel {
+    width: 365px;
+    font-size: 14px;
+    text-align: left;
+    background-color: #2f2c41;
+    color: #cccccc;
+    border: 1px solid #454350;
+    box-shadow: 3px 4px 3px #000000;
+    position: absolute;
+    top: 50px;
+    left: 60px;
+    padding:0 10px;
+    border-radius: 5px;
+    line-height: 20px;
+}
+.map h3.h3{ color: #b1b1b1; font-weight: normal; text-align: center;}
+.map .box{padding: 5px;background: #3b3f53;}
+.map .wacthbox{ text-align: center;}
+.map .wacthbox a{display:inline-block; padding: 5px 10px;  border-radius: 5px;}
+.map .tab{ margin-top: -41px;border: none;}
+.map .tab ul li{ background:#3b3f53; }
+.map .tab ul li.active{ background:#1b8eb1;color: #FFFFFF;}
+.map .tab ul li.active a{color: #FFFFFF;}
+.map.user-sarch label span{ text-align: left; margin:0 10px 0 0;}
+.map.user-sarch input{ height: 27px; margin-top:0;font-size: 14px;}
+.map.user-sarch{ height: 27px; margin-top:0;}
+.map #mapaddr {
+    width: 351px;
+}
+.map.setting .txt-input{ margin-top: 10px; height: 35px;}
+.map.user-sarch input{ width: 295px; padding:0 5px;}
+.map .txt-input select,.map .txt-input textarea{padding:0 5px; width: 285px;}
+.map .txt-input textarea{ height: 60px;}
+.map .usertop-search span,.map.user-sarch input{ margin-left: 0;}
+.map .txt-input select{ padding-left: 5px;}
+.map .listmore{ background: #2f2c41;}
+.map .maplist{ background: #FFFFFF;border: 1px solid #1d1c25; padding: 5px;border-radius: 5px;max-height: 700px; height: auto; overflow-x: hidden; overflow-y: scroll;}
+.map .maplist ul li{ margin-bottom: 10px;background: #504f5d; width: 97%; padding: 5px;border-radius: 5px;}
+.map .maplist ul li p{ margin:0 0 5px 0; color: #cccccc; text-shadow: 1px 1px 1px #2f2c41;}
+.map .adrlist{ color: #cccccc; }
+.map .maplist span,.map.user-sarch .my-marker span{vertical-align: top; margin: 0;}
+.map .adrlist label{ display:inline-block;}
+.map .adrlist label b{background:#1d1c25; padding: 2px 5px;color: #FF9900; margin-left: 10px;font-weight: normal;}
+#container .my-marker{
+    background: #2f2c41;
+    margin-left: -100px;
+    border-radius: 20px;
+    padding: 2px 10px;
+    box-shadow: 3px 2px 3px #000;
+    text-shadow: none;
+    text-align: left;
+    margin-top: -20px;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow:ellipsis;
+    -webkit-text-overflow:ellipsis;
+    -moz-text-overflow:ellipsis;
+    white-space:nowrap;
+}
+#container .logistics-markers{
+    border:1px dashed #B2E9CA;
+    background-color:rgba(178, 233, 202, 0.7);
+    margin-left: -46px;
+    padding: 2px 10px;
+    text-shadow: none;
+    text-align: left;
+    color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    -moz-text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#container .logistics-marker{
+    border:1px dashed red;
+    background-color:rgba(250, 173, 173, 0.7);
+    margin-left: -46px;
+    padding: 2px 10px;
+    text-shadow: none;
+    text-align: left;
+    color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    -moz-text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.dgtable .ngdialog-content{ margin-left:-500px;}
+#container .my-marker p{ margin: 0; padding: 0 10px;}
+#container .my-marker:after{
+    top:67px;
+    border: 10px solid;
+    left: -10px;
+    border-color: #2f2c41 transparent transparent transparent;
+}
+.amap-menu-outer {
+    margin: 2px;
+    padding: 2px;
+    list-style-type: none;
+    position: relative;
+    background-color:#3b3f53;
+    border: 1px solid #666;
+    border-radius: 5px;
+    box-shadow:1px 1px 1px #000;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.amap-menu-outer li {
+    text-indent: 0.5em;
+    color:#2aabd2;
+    font-size: 15px;
+    height: 20px;
+    line-height: 20px;
+    word-break: break-all;
+    white-space: nowrap;
+}
+.tabsoll{ max-height: 80%; overflow-y: auto;}
+.areabox{padding: 5px; border: 1px solid #3b3f53; background: #24283a;  margin-bottom: 5px; margin-right: 5px; cursor: pointer;}
+.areabox:hover{ background:#1d1c25;}
+.areabox p{ margin: 5px;}
+.areabox p span{ margin-right: 10px;}
+.areabox p b{font-weight: normal;}
+
+.ip-map{width:38%;float: left;height:100%;margin-right:10px;background: #3b3f53;}
+.ip-head{text-align: left;padding-left: 10px;float: left;padding-top: 20px;}
+.ip-left{float: left;margin-left: 50px;padding-top: 20px;}
+.ip-left1{text-align: left;padding-left: 10px;}
+.ip-left2{text-align: left;padding-left: 10px;}
+.ip-left3{text-align: left;padding-left: 25px;}
+.ip-left1>h3>div{padding-left: 20px}
+.ip-food{text-align: left;padding-left: 10px;margin-top: 50px;padding-bottom: 15px;border-bottom: 1px solid #b1b1b1;font-weight: 100;}
+.ip-maps{width:61%;height:100%;margin-top: 20px;}
+/*float: left;*/
+
+#container .ip-marker:after {
+    top: 67px;
+    border: 10px solid;
+    left: 15px;
+    border-color: #2f2c41 transparent transparent transparent;
+}
+
+
+

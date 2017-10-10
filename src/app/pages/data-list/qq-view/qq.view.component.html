@@ -1,0 +1,83 @@
+<div class="sleft-menu qq" *ngIf="qqdata">
+  <h2 *ngIf="qqdata.base.Num>0 || qqdata.GroupMessaging.Num>0">
+    <a><img src="../../../../assets/img/qqse.png"></a>
+  </h2>
+  <h2 *ngIf="qqdata.base.Num>0">
+    <a  href="javascript:;">QQ基本信息</a>
+    <b class="txt-error"> {{qqdata.base.Num}}</b> 条</h2>
+  <h2 *ngIf="qqdata.NickNum>0||qqdata.NickNum=='99+'">
+    <a href="javascript:;">QQ昵称</a>
+    <b class="txt-error"> {{qqdata.NickNum}}</b> 条</h2>
+  <h2>
+    QQ群信息
+    <b class="txt-error"> {{qqdata.GroupMessaging.Num}}</b>
+    条
+  </h2>
+  <ul>
+    <li *ngFor="let itm of qqdata.GroupMessaging.data.data.resultList">
+      <a href="javascript:;">{{itm.title}}</a>
+    </li>
+  </ul>
+</div>
+<div class="waterlist">
+  <h2 class="qqh2" id="qqjb">QQ基本信息</h2>
+  <div class="qq-list  waterfall" id="qqbase"  style="display: block" *ngIf="qqdata && qqdata.base.Num > 0">
+    <div class="pin" *ngFor="let q of qqdata.base.data.data.resultList">
+      <div *ngFor="let val of qqdata.base.data.head" class="qq_left">
+
+        <p *ngFor="let entry of val | keys" >
+          <ng-container *ngIf="q[entry.key]!=''&&q[entry.key]!='NA'">
+            <label class="tit">{{entry.value}}：</label>
+            <span  class="lencon"  [innerHtml]="q[entry.key] |safeHtml" ></span>
+          </ng-container>
+        </p>
+        <div class="clearfix"></div>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+  </div>
+  <!--<div class="qq-list" id="qunbase">-->
+    <!--<div class="quntop bgcolor">-->
+      <!--<div ng-repeat="(itm,val) in quninfoData.head">-->
+        <!--<p ng-repeat="(k,values) in val" ng-if="quninfoData.data[k]!=''" class="qq_left">-->
+          <!--<label class="tit">{{values}}：</label>-->
+          <!--<span class="lencon" ng-if="k!='qunNum'" ng-bind-html="quninfoData.data[k] | trustHtml"></span>-->
+          <!--&lt;!&ndash;<a class="iconimg-search"  ng-if="k=='qunNum'" ng-click="qqlinkSearch(quninfoData.data[k])" ng-bind-html="quninfoData.data[k] | trustHtml"></a>&ndash;&gt;-->
+          <!--<a ng-if="k=='qunNum'" ng-bind-html="quninfoData.data[k] | trustHtml"></a>-->
+        <!--</p>-->
+      <!--</div>-->
+      <!--<div style="clear: both"></div>-->
+    <!--</div>-->
+    <!--<div class="qunperson">-->
+      <!--<ul>&lt;!&ndash; class="flex2" &ndash;&gt;-->
+        <!--<li class="bgcolor" ng-repeat="(hitm,hval) in quninfoData.person.data.resultList" style="padding: 10px;margin-left: 10px;margin-bottom: 20px;width: 97%;float: left;">-->
+          <!--<div ng-repeat="(itm,val) in quninfoData.person.head" class="qq_left">-->
+            <!--<p ng-repeat="(k,values) in val">-->
+              <!--<label class="tit">{{values}}：</label>-->
+              <!--<span class="lencon" ng-if="k!='qqNum'" ng-bind-html="hval[k] | trustHtml"></span>-->
+              <!--&lt;!&ndash;<a class="iconimg-search"  ng-if="k=='qqNum'" ng-bind-html="hval[k] | trustHtml"></a>&ndash;&gt;-->
+              <!--<a class="iconimg-search"  ng-if="k=='qqNum'" ng-click="qqlinkSearch(hval[k])" ng-bind-html="hval[k] | trustHtml"></a>-->
+            <!--</p>-->
+          <!--</div>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="qq-list" id="nickname">-->
+    <!--<div class="nickname">&lt;!&ndash;flex2&ndash;&gt;-->
+      <!--<div class="pin" ng-repeat="(hitm,hval) in nickNameData.data.data.resultList track by hitm">-->
+        <!--<div ng-repeat="(itm,val) in nickNameData.data.head" class="qq_left">-->
+          <!--<p ng-repeat="(k,values) in val" ng-if="hval[k]!=''&&hval[k]!='NA'">-->
+            <!--<label class="tit">{{values}}：</label>-->
+            <!--<span class="lencon" ng-if="k!='qqNum'" ng-bind-html="hval[k] | trustHtml"></span>-->
+            <!--<a class="iconimg-search"  ng-if="k=='qqNum'" ng-click="qqlinkSearch(hval[k])" ng-bind-html="hval[k] | trustHtml"></a>-->
+          <!--</p>-->
+          <!--<div class="clearfix"></div>-->
+        <!--</div>-->
+        <!--<div style="clear: both"></div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div id="loadmore" class="loadmore ng-binding ng-scope" ng-show="loadmoreShow" ng-click="listLoadMore()">{{loadmore.txt}}</div>-->
+  <!--</div>-->
+  <div class="clearfix"></div>
+</div>

@@ -1,0 +1,94 @@
+<div class="imgbox">
+  <div class="simg" [ngClass]="{active: t.isActive}" *ngFor="let t of tooltips;let i = index" (click)="selectQueryTooltip(t.type)">
+    <span title="{{t.tooltipName}}"><img [src]="t.imgUrl"></span>
+    <label>{{t.tooltipName}}</label>
+  </div>
+</div>
+<div class="search-box" [ngClass]="{active: queryTag.currentTooltipType == 0}">
+  <div class="search-type">
+    <!--<h5>查询标签</h5>-->
+    <a href="javascript:;" group-active class="active" (click)="selectQueryType('keyword','超级查询')">超级查询</a>
+    <a href="javascript:;" group-active (click)="selectQueryType('qqdata','QQ关联')">QQ关联</a>
+    <a href="javascript:;" group-active (click)="selectQueryType('logistics','实时物流')">实时物流</a>
+    <a href="javascript:;" group-active (click)="selectQueryType('mobileAddress','手机状态')">手机状态</a>
+    <a href="javascript:;" group-active (click)="selectQueryType('company','企业工商查询')">企业工商查询</a>
+    <a href="javascript:;" group-active (click)="selectQueryType('website','互联网轨迹')">互联网轨迹</a>
+    <a href="javascript:;" group-active (click)="selectQueryType('weibo','微博用户信息')">微博用户信息</a>
+    <a href="javascript:;" group-active (click)="selectQueryType('ipaddress','IP精准定位')">IP精准定位</a>
+    <a href="javascript:;" group-active (click)="selectQueryType('logisticsmap','物流图谱')">物流图谱</a>
+    <a href="javascript:;" group-active (click)="selectQueryType('precise','高级查询')">高级查询</a>
+  </div>
+  <div class="search-line">
+    <div class="typelist relative">
+      <span class="typetit">{{queryTag.currentTypeName}}</span>
+      <!--<span class="typetit">{{queryPrames.currentTypeName}}</span>-->
+    </div>
+    <input type="search"  *ngFor="let m of inputOfDataModels;let i = index" class="search-input all" [hidden]="m.hidden" name="{{m.propertyName}}" placeholder="{{m.placeholderText}}" [(ngModel)]="queryParams[m.propertyName]" />
+
+
+    <div class="search-input precise relative" *ngIf="queryTag.currentType == 'precise'">
+      <select [(ngModel)]="precise.one"  (ngModelChange)="onChange($event)">
+        <option *ngFor="let po of preciseOne;let i = index" [ngValue]="po">
+          {{po.name}}
+        </option>
+      </select>
+      <select id="typeChange">
+        <option *ngFor="let pw of preciseTwo;let i = index" [ngValue]="pw">
+          {{pw.val}}
+        </option>
+      </select>
+      <input type="search" class="txt-input precise lastchild"  placeholder="输入关键词..."/>
+      <div class="search-button oticon">
+        <b class="iconfont" (click)="addInput()">+</b>
+      </div>
+      <div class="search-button oticon">
+        <b class="clearall small">全清</b>
+      </div>
+      <div class="precise-down">
+        <ng-container *ngFor="let h of childList">
+          <div [innerHtml]="h | safeHtml"></div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="search-button relative hasload " id="topSearch" (click)="searchByCondition()">
+      <i class="icon iconfont icon-tubiao11" ng-hide="status"></i>
+      <i class="loadicon iconfont icon-filesync"></i>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<div class="search-box" [ngClass]="{active: queryTag.currentTooltipType == 5}">
+  <div class="search-type tools">
+    <!--<h5>查询标签</h5>-->
+    <a href="javascritp:;" group-active class="active" (click)="selectQueryType('toolsip','IP地址解析')">IP地址解析</a>
+    <a href="javascritp:;" group-active (click)="selectQueryType('toolExp','快递单号查询')">快递单号查询</a>
+    <a href="javascritp:;" group-active (click)="selectQueryType('toolsvin','VIN车架号解析')">VIN车架号解析</a>
+    <a href="javascritp:;" group-active (click)="selectQueryType('toolsidcard','身份证解析')">身份证解析</a>
+    <a href="javascritp:;" group-active (click)="selectQueryType('toolsdomain','域名信息查询')">域名信息查询</a>
+    <a href="javascritp:;" group-active (click)="selectQueryType('toolszip','邮编信息')">邮编信息</a>
+
+  </div>
+  <div class="search-line">
+    <div class="typelist relative">
+      <span class="typetit">{{queryTag.currentTypeName}}</span>
+      <!--<span class="typetit">{{queryPrames.currentTypeName}}</span>-->
+    </div>
+    <input type="search"  *ngFor="let m of inputOfToolModels;let i = index" class="search-input all" [hidden]="m.hidden" name="{{m.propertyName}}" placeholder="{{m.placeholderText}}" [(ngModel)]="queryParams[m.propertyName]" />
+
+    <div class="search-button relative hasload " (click)="searchByCondition()">
+      <i class="icon iconfont icon-tubiao11" ng-hide="status"></i>
+      <i class="loadicon iconfont icon-filesync"></i>
+    </div>
+    <div class="clearfix"></div>
+    <!--小工具展示-->
+    <div class="toolsbox" id="toolsbox" ng-show="toolsbox">
+
+    </div>
+  </div>
+</div>
+<!--<nz-alert [nzType]="'warning'" [nzMessage]="alert.msg" [nzShowIcon]="true" [nzCloseable]="'true'"></nz-alert>-->
+<ng-container *ngFor="let a of alerts;let i = index;">
+  <nz-alert  [nzType]="a.type" [nzMessage]="a.msg" class="search-line" [nzShowIcon]="'true'" [nzCloseable]="'true'"></nz-alert>
+</ng-container>
+

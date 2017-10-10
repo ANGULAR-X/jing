@@ -1,0 +1,32 @@
+<div class="user-sarch txt-input active">
+  <h3>我的数据</h3>
+  <!--图开始-->
+  <div class="data-no" *ngIf="!tableDate">暂无数据...</div>
+  <div class="data" *ngIf="tableDate">
+    <ng-container *ngFor="let obj of tableDate.resultList;let i = index;">
+      <div class="data-div" *ngIf="obj.status">
+        <div class="div-img">
+          <img src="../../../../assets/img/user/all.png">
+        </div>
+        <div class="data-p">
+          <b class="data-font1">{{obj.name}}</b>
+          <p>开通时间：{{obj.time}}</p>
+          <p>剩余次数：<b class="data-font2">{{obj.count}}</b>次</p>
+          <!--<div class="data-rs">天</div>-->
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngFor="let obj of tableDate.resultList;let i = index;">
+      <div class="data-divs" *ngIf="!obj.status">
+        <div class="div-img">
+          <img src="../../../../assets/img/user/all.png">
+        </div>
+        <div class="data-p">
+          <b class="data-font1">{{obj.name}}</b>
+          <p style="color: red">暂未开通</p>
+        </div>
+      </div>
+    </ng-container>
+    <div class="clearfix"></div>
+  </div>
+</div>

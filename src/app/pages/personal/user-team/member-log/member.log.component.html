@@ -1,0 +1,42 @@
+<div class="usertab3 active">
+  <div class="user-sarch">
+    <span><b>快速查找</b></span>
+    <span>
+         <nz-select style="width: 200px;float: none;color: #fff;" [(ngModel)]="selectedOption"  nzAllowClear>
+          <nz-option
+            *ngFor="let option of options"
+            [nzLabel]="option.label"
+            [nzValue]="option">
+          </nz-option>
+        </nz-select>
+    </span>
+    <span>
+         <a class="btn ablue" (click)="selectUserLog()">筛选</a>
+    </span>
+  </div>
+  <!--表格开始-->
+  <nz-table #nzTable *ngIf="tableData" [nzAjaxData]="tableData.resultList"
+            [nzTotal]="searchParams.total"
+            [nzLoading]="searchParams.isLoading"
+            [(nzPageIndex)]="searchParams.current"
+            (nzPageIndexChange)="refreshData(searchParams)"
+            [(nzPageSize)]="searchParams.pageSize">
+    <thead nz-thead>
+    <tr>
+      <th nz-th *ngFor="let h of tableData.headers;let i = index;">{{h.fieldCH}}</th>
+    </tr>
+    </thead>
+    <tbody nz-tbody>
+    <tr nz-tbody-tr *ngFor="let data of tableData.resultList;let i = index;">
+      <td nz-td *ngFor="let h of tableData.headers;let i = index;">
+        <span *ngIf="h['fieldEN']!=='status'">
+          {{data[h['fieldEN']]}}
+        </span>
+        <span *ngIf="h['fieldEN']=='status'">
+          <b [ngClass]="{'txt-red':data[h['fieldEN']]=='0','txt-green': data[h['fieldEN']]=='1'}">{{data[h['fieldEN']]=='0' ? '登录' : '登出'}}</b>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
